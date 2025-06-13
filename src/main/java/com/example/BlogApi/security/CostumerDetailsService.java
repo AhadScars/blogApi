@@ -1,7 +1,7 @@
 package com.example.BlogApi.security;
 
 import com.example.BlogApi.entity.UserEntity;
-import com.example.BlogApi.entity.UserPriniple;
+import com.example.BlogApi.entity.UserPrincipal;
 import com.example.BlogApi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +25,6 @@ public class CostumerDetailsService implements UserDetailsService {
         if (user==null){
             throw new UsernameNotFoundException("username not found");
         }
-        return new UserPriniple(user);
+        return new UserPrincipal(user);
     }
 }

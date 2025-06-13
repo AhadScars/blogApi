@@ -29,5 +29,4 @@ public class BlogService {
     public void deleteAll (){
         repository.deleteAll();
     }
-
 }

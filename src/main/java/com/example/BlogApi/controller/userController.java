@@ -16,7 +16,7 @@ public class userController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/showAll")
+    @GetMapping("/showall")
     public List<UserEntity> getAllUsers() {
         return userService.getAll();
     }

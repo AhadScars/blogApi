@@ -2,8 +2,13 @@ package com.example.BlogApi.controller;
 
 
 import com.example.BlogApi.entity.BlogEntity;
+import com.example.BlogApi.entity.UserEntity;
 import com.example.BlogApi.service.BlogService;
+import com.example.BlogApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +19,9 @@ public class BlogController {
 
     @Autowired
     BlogService service;
+
+    @Autowired
+    UserService userService;
 
     @PostMapping("/add")
     public BlogEntity addBlog(@RequestBody BlogEntity entity){

@@ -6,20 +6,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Optional;
 
-public class UserPriniple implements UserDetails {
+public class UserPrincipal implements UserDetails {
 
     private UserEntity user;
 
-    public UserPriniple (UserEntity user){
+    public UserPrincipal(UserEntity user){
         this.user = user;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("Admin"));
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override

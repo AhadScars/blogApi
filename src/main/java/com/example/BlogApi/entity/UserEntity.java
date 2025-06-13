@@ -12,17 +12,13 @@ public class UserEntity {
         this.password = password;
     }
 
-    public UserEntity() {}
+    public UserEntity() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String username;
-
-    private String password;
-
-    // Getters and setters
 
     public Integer getId() {
         return id;
@@ -47,4 +43,7 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    private String password;
+
 }
