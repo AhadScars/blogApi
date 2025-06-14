@@ -1,6 +1,5 @@
 package com.example.BlogApi.security;
 
-import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class Config {
 
     @Autowired
-    private CostumerDetailsService detailsService;
+    private CustomerDetailsService detailsService;
     @Autowired
     private JWTFilter jwtFilter;
 
@@ -33,8 +32,11 @@ public class Config {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/blog/authuser/register", "/auth/blog/add").permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers("/blog/authuser/register").permitAll()
+                        .anyRequest()
+                        .authenticated()
+                )
+
                 .httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -1,6 +1,5 @@
 package com.example.BlogApi.security;
 
-import com.example.BlogApi.security.CostumerDetailsService;
 import com.example.BlogApi.service.JWTservice;
 import com.example.BlogApi.service.TokenBlacklistService;
 import jakarta.servlet.FilterChain;
@@ -41,7 +40,7 @@ public class JWTFilter extends OncePerRequestFilter {
                 return;
             }
 
-            UserDetails userDetails = context.getBean(CostumerDetailsService.class).loadUserByUsername(username);
+            UserDetails userDetails = context.getBean(CustomerDetailsService.class).loadUserByUsername(username);
 
             if (jwTservice.validateToken(token, userDetails)){
                 UsernamePasswordAuthenticationToken authToken =

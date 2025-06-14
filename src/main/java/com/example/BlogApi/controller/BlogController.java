@@ -26,7 +26,7 @@ public class BlogController {
     }
 
     @GetMapping("/showblogs")
-    public List<BlogEntity> showAll(){
+    public List<BlogEntity> getAllBlogs(){
         return service.getAllBlogs();
     }
 
