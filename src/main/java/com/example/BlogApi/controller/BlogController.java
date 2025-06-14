@@ -20,9 +20,6 @@ public class BlogController {
     @Autowired
     BlogService service;
 
-    @Autowired
-    UserService userService;
-
     @PostMapping("/add")
     public BlogEntity addBlog(@RequestBody BlogEntity entity){
         return service.saveBlog(entity);
