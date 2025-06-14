@@ -32,11 +32,10 @@ public class Config {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/blog/authuser/register").permitAll()
+                        .requestMatchers("/blog/authuser/register", "/blog/authuser/login","/auth/blog/showblogs").permitAll()
                         .anyRequest()
                         .authenticated()
                 )
-
                 .httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

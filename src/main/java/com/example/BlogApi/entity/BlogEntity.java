@@ -6,15 +6,27 @@ import jakarta.persistence.*;
 @Entity
 public class BlogEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    public BlogEntity(Integer id, String title, String content) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public BlogEntity(Integer id, String title, String content, UserEntity user) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 
     public Integer getId() {
