@@ -8,9 +8,8 @@ import com.example.BlogApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -40,10 +39,21 @@ public class BlogController {
         return service.getAllBlogs();
     }
 
-    @DeleteMapping("/deleteall")
-    public void deleteAll(){
-        service.deleteAll();
+
+
+@Transactional
+@DeleteMapping("/deleteall")
+    public String deleteAllBlogsByCurrentUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userService.findByUsername(username);
+
+        service.deleteAllBlogsByUser(user);
+        return "All blogs deleted for user: " + username;
     }
+
+
+
+
     @DeleteMapping("/delete/id/{id}")
     public String deleteById(@PathVariable Integer id) {
         Optional<BlogEntity> optionalBlog = service.findById(id);
