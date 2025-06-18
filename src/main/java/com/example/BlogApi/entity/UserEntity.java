@@ -1,6 +1,7 @@
 package com.example.BlogApi.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -43,7 +44,6 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-
     private String password;
 
 }

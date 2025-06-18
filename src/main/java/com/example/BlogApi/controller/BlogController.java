@@ -72,4 +72,25 @@ public class BlogController {
         return "Blog deleted successfully";
 
     }
+    @PutMapping("/update/{id}")
+    public BlogEntity updateBlog(@PathVariable Integer id, @RequestBody BlogEntity updatedBlog) {
+        String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<BlogEntity> optionalBlog = service.findById(id);
+
+        if (optionalBlog.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Blog not found");
+        }
+
+        BlogEntity existingBlog = optionalBlog.get();
+
+        if (!existingBlog.getUser().getUsername().equals(currentUsername)) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You can only update your own blog");
+        }
+
+        existingBlog.setTitle(updatedBlog.getTitle());
+        existingBlog.setContent(updatedBlog.getContent());
+
+        return service.saveBlog(existingBlog);
+    }
+
 }
