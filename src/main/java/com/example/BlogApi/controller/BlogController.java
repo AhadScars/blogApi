@@ -7,7 +7,6 @@ import com.example.BlogApi.service.BlogService;
 import com.example.BlogApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -68,6 +67,7 @@ public class BlogController {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not allowed to delete this blog");
         }
 
+
         service.deleteById(id);
         return "Blog deleted successfully";
 
@@ -91,6 +91,11 @@ public class BlogController {
         existingBlog.setContent(updatedBlog.getContent());
 
         return service.saveBlog(existingBlog);
+    }
+
+    @GetMapping("/get/title/{title}")
+    public List<BlogEntity> searchByTite(@PathVariable String title){
+        return service.findbytitle(title);
     }
 
 }

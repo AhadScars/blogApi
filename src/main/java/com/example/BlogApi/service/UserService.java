@@ -19,7 +19,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-JWTservice jwTservice;
+    JWTservice jwTservice;
 
     @Autowired
     AuthenticationManager authenticationManager;

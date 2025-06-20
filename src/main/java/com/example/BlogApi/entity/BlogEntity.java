@@ -14,6 +14,8 @@ public class BlogEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+
+
     public UserEntity getUser() {
         return user;
     }
@@ -27,6 +29,7 @@ public class BlogEntity {
         this.title = title;
         this.content = content;
         this.user = user;
+
     }
 
     public Integer getId() {
@@ -57,6 +60,5 @@ public class BlogEntity {
 
     public BlogEntity() {
     }
-
     private String content;
 }

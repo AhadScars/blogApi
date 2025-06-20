@@ -38,4 +38,9 @@ public class BlogService {
     public Optional<BlogEntity> findById(Integer id) {
         return repository.findById(id);
     }
+
+    public List<BlogEntity> findbytitle(String title){
+        return repository.findByTitleContainingIgnoreCase(title);
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.BlogApi.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 
@@ -18,6 +19,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Integer id;
     private String username;
 
@@ -44,6 +46,7 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-    private String password;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 }

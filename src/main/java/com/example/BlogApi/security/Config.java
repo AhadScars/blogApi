@@ -32,7 +32,10 @@ public class Config {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/blog/authuser/register", "/blog/authuser/login","/auth/blog/showblogs").permitAll()
+                        .requestMatchers("/blog/authuser/register",
+                                "/blog/authuser/login",
+                                "/auth/blog/showblogs",
+                                "/auth/blog/get/title/**").permitAll()
                         .anyRequest()
                         .authenticated()
                 )
