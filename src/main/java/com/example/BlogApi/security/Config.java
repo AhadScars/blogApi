@@ -35,7 +35,9 @@ public class Config {
                         .requestMatchers("/blog/authuser/register",
                                 "/blog/authuser/login",
                                 "/auth/blog/showblogs",
-                                "/auth/blog/get/title/**").permitAll()
+                                "/auth/blog/get/title/**",
+                                "auth/blog/search/category/**")
+                        .permitAll()
                         .anyRequest()
                         .authenticated()
                 )

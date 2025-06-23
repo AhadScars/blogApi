@@ -14,6 +14,20 @@ public class BlogEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+
+
 
 
     public UserEntity getUser() {
@@ -24,11 +38,12 @@ public class BlogEntity {
         this.user = user;
     }
 
-    public BlogEntity(Integer id, String title, String content, UserEntity user) {
+    public BlogEntity(Integer id, String title, String content, UserEntity user,Category category) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
+        this.category= category;
 
     }
 

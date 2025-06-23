@@ -98,4 +98,9 @@ public class BlogController {
         return service.findbytitle(title);
     }
 
+    @GetMapping("/search/category/{category}")
+    public List<BlogEntity> searchByCategory(@PathVariable String category) {
+        return service.searchByCategoryName(category);
+    }
+
 }

@@ -43,4 +43,9 @@ public class BlogService {
         return repository.findByTitleContainingIgnoreCase(title);
     }
 
+    public List<BlogEntity> searchByCategoryName(String categoryName) {
+        return repository.findByCategory_CategoryIgnoreCase(categoryName);
+    }
+
+
 }

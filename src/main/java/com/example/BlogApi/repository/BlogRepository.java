@@ -9,7 +9,7 @@ import java.util.List;
 public interface BlogRepository extends JpaRepository<BlogEntity, Integer> {
     void deleteByUser(UserEntity user);
     List<BlogEntity> findByTitleContainingIgnoreCase(String title);
-
+    List<BlogEntity> findByCategory_CategoryIgnoreCase(String categoryName);
 }
 
 
