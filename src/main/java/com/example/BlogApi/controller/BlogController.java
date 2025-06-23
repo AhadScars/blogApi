@@ -6,6 +6,9 @@ import com.example.BlogApi.entity.UserEntity;
 import com.example.BlogApi.service.BlogService;
 import com.example.BlogApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +37,10 @@ public class BlogController {
 
 
     @GetMapping("/showblogs")
-    public List<BlogEntity> getAllBlogs(){
-        return service.getAllBlogs();
+    public Page<BlogEntity> getAllBlogs(@RequestParam (defaultValue = "0") int page ,
+                                        @RequestParam(defaultValue = "5")int size){
+        Pageable pageable = PageRequest.of(page, size);
+        return service.getAllBlogs(pageable);
     }
 
 

@@ -5,6 +5,8 @@ import com.example.BlogApi.entity.BlogEntity;
 import com.example.BlogApi.entity.UserEntity;
 import com.example.BlogApi.repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +19,8 @@ public class BlogService {
     @Autowired
     BlogRepository repository;
 
-    public List<BlogEntity> getAllBlogs(){
-        return repository.findAll();
+    public Page<BlogEntity> getAllBlogs(Pageable pageable){
+        return repository.findAll(pageable);
     }
 
     public BlogEntity saveBlog(BlogEntity entity){
