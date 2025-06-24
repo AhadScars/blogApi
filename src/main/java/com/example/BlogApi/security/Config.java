@@ -36,11 +36,13 @@ public class Config {
                                 "/blog/authuser/login",
                                 "/auth/blog/showblogs",
                                 "/auth/blog/get/title/**",
-                                "auth/blog/search/category/**")
+                                "auth/blog/search/category/**"
+                                )
                         .permitAll()
                         .anyRequest()
                         .authenticated()
                 )
+
                 .httpBasic(Customizer.withDefaults())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -3,6 +3,9 @@ package com.example.BlogApi.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 public class BlogEntity {
 
@@ -38,12 +41,13 @@ public class BlogEntity {
         this.user = user;
     }
 
-    public BlogEntity(Integer id, String title, String content, UserEntity user,Category category) {
+    public BlogEntity(Integer id, String title, String content, UserEntity user,Category category,LocalDateTime localDate) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
         this.category= category;
+        this.localDate= localDate;
 
     }
 
@@ -71,9 +75,19 @@ public class BlogEntity {
         this.content = content;
     }
 
-    private String title;
 
     public BlogEntity() {
     }
+
+    private String title;
     private String content;
+    private LocalDateTime localDate = LocalDateTime.now();
+
+    public LocalDateTime getLocalDateTime() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDateTime localDate) {
+        this.localDate = localDate;
+    }
 }
